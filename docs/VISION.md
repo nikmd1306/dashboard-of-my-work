@@ -42,80 +42,9 @@ What unites them: **they can't describe their work life in one word**. And that'
 
 This is not a task manager. Not accounting software. Not a time tracker. It's a **work life control panel** — a place you open in the morning to see the big picture and decide what to spend your day on.
 
-## MVP scope (v1)
+## MVP scope
 
-### Principle: every feature answers a specific question
-
-Only what's listed below goes into v1, with a rationale for each.
-
----
-
-### 1. Work streams
-
-**Question it answers**: "What am I actually working on?"
-
-The user creates a list of their work streams. Each stream is a distinct "box" with a name, type (freelance / employment / own business / other), and status (active / paused / completed).
-
-This is the foundation of the entire app. All other data is attached to streams.
-
-**Example**: "Freelance: design for Client A", "Day job: Company B", "Own business: X workshop".
-
----
-
-### 2. Dashboard (main screen)
-
-**Question it answers**: "What's my overall picture right now?"
-
-The screen that opens on launch. Shows:
-- List of active streams with key metrics for each
-- Summary totals: how much earned in a period, how much time spent
-- Upcoming tasks / deadlines across all streams
-
-Not overloaded — a high-level overview only. Details available by clicking into a specific stream.
-
----
-
-### 3. Time tracking (simple, manual)
-
-**Question it answers**: "How much time do I spend on each stream?"
-
-Manual entries: "Today I spent 3 hours on Project A." No built-in timer (the user already has their own time tracker) — just after-the-fact logging. Visualization: how time was distributed over a week / month.
-
-**Why**: to understand whether time allocation matches priorities. "I spend 60% of my time on a project that brings 20% of my income" — that's an insight that changes decisions.
-
----
-
-### 4. Income and expense tracking (simple, manual)
-
-**Question it answers**: "How much does each stream earn and cost?"
-
-Manual entry of income and expenses linked to a stream. Different payment models (fixed, hourly, recurring) are simply "amount + date + stream" — no overcomplication.
-
-**Why**: to see the financial return of each stream. Especially powerful when combined with time data (point 3).
-
----
-
-### 5. Tasks (minimal, linked to streams)
-
-**Question it answers**: "What do I need to do next for each stream?"
-
-A simple task list linked to streams. No subtasks, no priorities, no kanban. Just: "task — stream — deadline — done/not done."
-
-**Why**: to see on the dashboard that each stream has concrete next steps. Doesn't replace a full task manager — just provides minimal context on the main screen.
-
----
-
-### What's NOT in v1 (and why)
-
-| Feature | Why not now |
-|---------|-----------|
-| Integrations with external services (Toggl, Todoist, banks) | The product's value must be visible without them. Integrations accelerate — they're not the foundation |
-| Built-in timer | Users already have their own time trackers. Duplicating means competing, not complementing |
-| Invoicing | A separate large problem, unrelated to a "control panel" |
-| Team features | Product is for one person. Team features are a different universe |
-| Habits, health, personal goals | This is a "life dashboard" in the broad sense, but v1 focuses on work life. Expansion comes later |
-| AI analytics and recommendations | Great idea, but empty without data. First — convenient input and visualization |
-| Data import / export | Useful, but manual entry is enough for v1 |
+See `docs/PRODUCT.md` for the detailed product strategy, MVP scope, and principles.
 
 ## Product metaphor
 

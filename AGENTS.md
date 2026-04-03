@@ -9,7 +9,8 @@ AGENTS.md          — this file: project map and agent rules
 CLAUDE.md          -> AGENTS.md (symlink for Cursor/Claude)
 README.md          — project description for humans
 docs/
-└── VISION.md      — product vision, target audience, MVP scope
+├── PRODUCT.md     — product strategy, MVP scope, principles
+└── VISION.md      — product vision, problem space, market context
 ```
 
 ## Language policy
@@ -19,6 +20,7 @@ docs/
 
 ## Working in this repository
 
-1. Read `docs/VISION.md` before making product decisions — it defines what we're building and what's out of scope.
-2. Do not add features not described in the vision without explicit user approval.
+1. Read `docs/PRODUCT.md` before making product decisions — it defines MVP scope, principles, and what's out of scope.
+2. Read `docs/VISION.md` for broader context — the problem space, target audience, and market landscape.
+3. Do not add features not described in the product strategy without explicit user approval.
 3. Keep this file short. As the project grows, add detailed docs to `docs/` and link them here.
