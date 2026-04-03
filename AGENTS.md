@@ -10,6 +10,7 @@ CLAUDE.md          -> AGENTS.md (symlink for Cursor/Claude)
 README.md          — project description for humans
 docs/
 ├── PRODUCT.md     — product strategy, MVP scope, principles
+├── STACK.md       — tech stack and architecture decisions
 └── VISION.md      — product vision, problem space, market context
 ```
 
@@ -21,6 +22,7 @@ docs/
 ## Working in this repository
 
 1. Read `docs/PRODUCT.md` before making product decisions — it defines MVP scope, principles, and what's out of scope.
-2. Read `docs/VISION.md` for broader context — the problem space, target audience, and market landscape.
-3. Do not add features not described in the product strategy without explicit user approval.
-3. Keep this file short. As the project grows, add detailed docs to `docs/` and link them here.
+2. Read `docs/STACK.md` before making technical decisions — it defines the tech stack and architecture.
+3. Read `docs/VISION.md` for broader context — the problem space, target audience, and market landscape.
+4. Do not add features not described in the product strategy without explicit user approval.
+5. Keep this file short. As the project grows, add detailed docs to `docs/` and link them here.
