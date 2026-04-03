@@ -1,0 +1,1760 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Work Dashboard — Design System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    /* =============================================
+       WORK DASHBOARD — DESIGN SYSTEM
+       Premium Minimalist / Linear + Apple inspired
+       ============================================= */
+
+    :root {
+      /* === COLOR PALETTE — LIGHT THEME (Primary) === */
+
+      /* Backgrounds */
+      --color-bg-primary: #FAFAFA;
+      --color-bg-secondary: #FFFFFF;
+      --color-bg-tertiary: #F4F4F5;
+      --color-bg-elevated: #FFFFFF;
+      --color-bg-sunken: #F0F0F1;
+
+      /* Text */
+      --color-text-primary: #18181B;
+      --color-text-secondary: #52525B;
+      --color-text-tertiary: #71717A;
+      --color-text-muted: #A1A1AA;
+      --color-text-inverse: #FAFAFA;
+
+      /* Borders */
+      --color-border: #E4E4E7;
+      --color-border-strong: #D4D4D8;
+      --color-border-subtle: #F4F4F5;
+
+      /* Accent — Indigo */
+      --color-accent: #6366F1;
+      --color-accent-hover: #5457E5;
+      --color-accent-active: #4F46E5;
+      --color-accent-subtle: rgba(99, 102, 241, 0.06);
+      --color-accent-muted: rgba(99, 102, 241, 0.12);
+      --color-accent-text: #4F46E5;
+
+      /* Semantic */
+      --color-success: #10B981;
+      --color-success-subtle: rgba(16, 185, 129, 0.08);
+      --color-success-text: #059669;
+
+      --color-warning: #F59E0B;
+      --color-warning-subtle: rgba(245, 158, 11, 0.08);
+      --color-warning-text: #D97706;
+
+      --color-error: #EF4444;
+      --color-error-subtle: rgba(239, 68, 68, 0.08);
+      --color-error-text: #DC2626;
+
+      /* === TYPOGRAPHY === */
+      --font-sans: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      --font-mono: 'Geist Mono', 'SF Mono', 'Fira Code', 'Consolas', monospace;
+
+      /* Type scale — dashboard-optimized */
+      --text-xs: 0.75rem;      /* 12px */
+      --text-sm: 0.8125rem;    /* 13px */
+      --text-base: 0.875rem;   /* 14px — default body */
+      --text-md: 1rem;         /* 16px */
+      --text-lg: 1.125rem;     /* 18px */
+      --text-xl: 1.25rem;      /* 20px */
+      --text-2xl: 1.5rem;      /* 24px */
+      --text-3xl: 1.875rem;    /* 30px */
+      --text-4xl: 2.25rem;     /* 36px */
+
+      /* Line heights */
+      --leading-none: 1;
+      --leading-tight: 1.25;
+      --leading-snug: 1.375;
+      --leading-normal: 1.5;
+      --leading-relaxed: 1.625;
+
+      /* Letter spacing */
+      --tracking-tight: -0.025em;
+      --tracking-normal: 0;
+      --tracking-wide: 0.025em;
+
+      /* Font weights */
+      --weight-regular: 400;
+      --weight-medium: 500;
+      --weight-semibold: 600;
+
+      /* === SPACING — 8px grid === */
+      --space-0: 0;
+      --space-px: 1px;
+      --space-0.5: 0.125rem;   /* 2px */
+      --space-1: 0.25rem;      /* 4px */
+      --space-1.5: 0.375rem;   /* 6px */
+      --space-2: 0.5rem;       /* 8px */
+      --space-3: 0.75rem;      /* 12px */
+      --space-4: 1rem;         /* 16px */
+      --space-5: 1.25rem;      /* 20px */
+      --space-6: 1.5rem;       /* 24px */
+      --space-8: 2rem;         /* 32px */
+      --space-10: 2.5rem;      /* 40px */
+      --space-12: 3rem;        /* 48px */
+      --space-16: 4rem;        /* 64px */
+      --space-20: 5rem;        /* 80px */
+
+      /* === BORDERS === */
+      --radius-sm: 6px;
+      --radius-md: 8px;
+      --radius-lg: 12px;
+      --radius-xl: 16px;
+      --radius-full: 9999px;
+
+      /* === SHADOWS — barely-there depth === */
+      --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.04);
+      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.04);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -4px rgba(0, 0, 0, 0.03);
+      --shadow-ring: 0 0 0 3px var(--color-accent-subtle);
+
+      /* === TRANSITIONS === */
+      --transition-fast: 100ms ease;
+      --transition-normal: 200ms ease;
+      --transition-slow: 300ms ease;
+    }
+
+    /* === DARK THEME === */
+    [data-theme="dark"] {
+      --color-bg-primary: #09090B;
+      --color-bg-secondary: #18181B;
+      --color-bg-tertiary: #1C1C1F;
+      --color-bg-elevated: #27272A;
+      --color-bg-sunken: #09090B;
+
+      --color-text-primary: #FAFAFA;
+      --color-text-secondary: #A1A1AA;
+      --color-text-tertiary: #71717A;
+      --color-text-muted: #52525B;
+      --color-text-inverse: #18181B;
+
+      --color-border: #27272A;
+      --color-border-strong: #3F3F46;
+      --color-border-subtle: #1C1C1F;
+
+      --color-accent: #818CF8;
+      --color-accent-hover: #9298F8;
+      --color-accent-active: #A5B4FC;
+      --color-accent-subtle: rgba(129, 140, 248, 0.08);
+      --color-accent-muted: rgba(129, 140, 248, 0.15);
+      --color-accent-text: #A5B4FC;
+
+      --color-success: #34D399;
+      --color-success-subtle: rgba(52, 211, 153, 0.10);
+      --color-success-text: #6EE7B7;
+
+      --color-warning: #FBBF24;
+      --color-warning-subtle: rgba(251, 191, 36, 0.10);
+      --color-warning-text: #FCD34D;
+
+      --color-error: #F87171;
+      --color-error-subtle: rgba(248, 113, 113, 0.10);
+      --color-error-text: #FCA5A5;
+
+      --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.2);
+      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px 2px rgba(0, 0, 0, 0.2);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -2px rgba(0, 0, 0, 0.2);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -4px rgba(0, 0, 0, 0.2);
+    }
+
+    /* =============================================
+       BASE STYLES
+       ============================================= */
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      font-size: 16px;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      font-size: var(--text-base);
+      font-weight: var(--weight-regular);
+      line-height: var(--leading-normal);
+      color: var(--color-text-primary);
+      background-color: var(--color-bg-primary);
+      min-height: 100vh;
+      transition: background-color var(--transition-normal), color var(--transition-normal);
+    }
+
+    ::selection {
+      background: var(--color-accent-muted);
+      color: var(--color-text-primary);
+    }
+
+    /* =============================================
+       TYPOGRAPHY
+       ============================================= */
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: var(--font-sans);
+      font-weight: var(--weight-semibold);
+      line-height: var(--leading-tight);
+      color: var(--color-text-primary);
+      letter-spacing: var(--tracking-tight);
+    }
+
+    h1 { font-size: var(--text-4xl); }
+    h2 { font-size: var(--text-3xl); }
+    h3 { font-size: var(--text-2xl); }
+    h4 { font-size: var(--text-xl); }
+    h5 { font-size: var(--text-lg); }
+    h6 { font-size: var(--text-md); }
+
+    p {
+      font-size: var(--text-base);
+      line-height: var(--leading-relaxed);
+      color: var(--color-text-secondary);
+    }
+
+    a {
+      color: var(--color-accent-text);
+      text-decoration: none;
+      transition: color var(--transition-fast);
+    }
+
+    a:hover {
+      color: var(--color-accent-hover);
+    }
+
+    code, kbd {
+      font-family: var(--font-mono);
+      font-size: 0.9em;
+    }
+
+    code:not(pre code) {
+      background: var(--color-bg-tertiary);
+      padding: 2px 6px;
+      border-radius: var(--radius-sm);
+      color: var(--color-text-primary);
+      font-size: var(--text-sm);
+    }
+
+    /* =============================================
+       COMPONENT: BUTTONS
+       ============================================= */
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-2);
+      font-family: var(--font-sans);
+      font-size: var(--text-sm);
+      font-weight: var(--weight-medium);
+      line-height: var(--leading-none);
+      padding: var(--space-2) var(--space-4);
+      border: 1px solid transparent;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      white-space: nowrap;
+      user-select: none;
+    }
+
+    .btn:focus-visible {
+      outline: none;
+      box-shadow: var(--shadow-ring);
+    }
+
+    .btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .btn-primary {
+      background: var(--color-accent);
+      color: white;
+    }
+
+    .btn-primary:hover:not(:disabled) {
+      background: var(--color-accent-hover);
+    }
+
+    .btn-primary:active:not(:disabled) {
+      background: var(--color-accent-active);
+    }
+
+    .btn-secondary {
+      background: var(--color-bg-secondary);
+      color: var(--color-text-primary);
+      border-color: var(--color-border);
+      box-shadow: var(--shadow-xs);
+    }
+
+    .btn-secondary:hover:not(:disabled) {
+      background: var(--color-bg-tertiary);
+      border-color: var(--color-border-strong);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--color-text-secondary);
+    }
+
+    .btn-ghost:hover:not(:disabled) {
+      background: var(--color-bg-tertiary);
+      color: var(--color-text-primary);
+    }
+
+    .btn-danger {
+      background: var(--color-error);
+      color: white;
+    }
+
+    .btn-danger:hover:not(:disabled) {
+      background: #DC2626;
+    }
+
+    .btn-sm {
+      padding: var(--space-1.5) var(--space-3);
+      font-size: var(--text-xs);
+      border-radius: var(--radius-sm);
+    }
+
+    .btn-lg {
+      padding: var(--space-3) var(--space-6);
+      font-size: var(--text-base);
+      border-radius: var(--radius-md);
+    }
+
+    /* =============================================
+       COMPONENT: INPUTS
+       ============================================= */
+
+    .input {
+      width: 100%;
+      font-family: var(--font-sans);
+      font-size: var(--text-sm);
+      padding: var(--space-2) var(--space-3);
+      background: var(--color-bg-secondary);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      color: var(--color-text-primary);
+      transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+      box-shadow: var(--shadow-xs);
+    }
+
+    .input::placeholder {
+      color: var(--color-text-muted);
+    }
+
+    .input:focus {
+      outline: none;
+      border-color: var(--color-accent);
+      box-shadow: var(--shadow-ring);
+    }
+
+    .input:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      background: var(--color-bg-tertiary);
+    }
+
+    .input-error {
+      border-color: var(--color-error);
+    }
+
+    .input-error:focus {
+      box-shadow: 0 0 0 3px var(--color-error-subtle);
+    }
+
+    .label {
+      display: block;
+      font-size: var(--text-sm);
+      font-weight: var(--weight-medium);
+      color: var(--color-text-primary);
+      margin-bottom: var(--space-1.5);
+    }
+
+    .help-text {
+      font-size: var(--text-xs);
+      color: var(--color-text-tertiary);
+      margin-top: var(--space-1.5);
+    }
+
+    .help-text.error {
+      color: var(--color-error-text);
+    }
+
+    /* =============================================
+       COMPONENT: CARDS
+       ============================================= */
+
+    .card {
+      background: var(--color-bg-secondary);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+
+    .card-body {
+      padding: var(--space-5);
+    }
+
+    .card-header {
+      padding: var(--space-4) var(--space-5);
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .card-footer {
+      padding: var(--space-4) var(--space-5);
+      border-top: 1px solid var(--color-border);
+    }
+
+    .card-shadow {
+      box-shadow: var(--shadow-sm);
+      border-color: var(--color-border-subtle);
+    }
+
+    .card-interactive {
+      cursor: pointer;
+      transition: all var(--transition-normal);
+    }
+
+    .card-interactive:hover {
+      border-color: var(--color-border-strong);
+      box-shadow: var(--shadow-md);
+    }
+
+    /* =============================================
+       COMPONENT: BADGES
+       ============================================= */
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      font-family: var(--font-sans);
+      font-size: var(--text-xs);
+      font-weight: var(--weight-medium);
+      padding: 2px var(--space-2);
+      border-radius: var(--radius-full);
+      line-height: var(--leading-normal);
+    }
+
+    .badge-default {
+      background: var(--color-bg-tertiary);
+      color: var(--color-text-secondary);
+    }
+
+    .badge-accent {
+      background: var(--color-accent-subtle);
+      color: var(--color-accent-text);
+    }
+
+    .badge-success {
+      background: var(--color-success-subtle);
+      color: var(--color-success-text);
+    }
+
+    .badge-warning {
+      background: var(--color-warning-subtle);
+      color: var(--color-warning-text);
+    }
+
+    .badge-error {
+      background: var(--color-error-subtle);
+      color: var(--color-error-text);
+    }
+
+    /* =============================================
+       COMPONENT: PROGRESS BAR
+       ============================================= */
+
+    .progress {
+      height: 4px;
+      background: var(--color-bg-tertiary);
+      border-radius: var(--radius-full);
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      height: 100%;
+      background: var(--color-accent);
+      border-radius: var(--radius-full);
+      transition: width var(--transition-slow);
+    }
+
+    .progress-bar.success {
+      background: var(--color-success);
+    }
+
+    /* =============================================
+       COMPONENT: NAVIGATION
+       ============================================= */
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: var(--space-1);
+    }
+
+    .nav-item {
+      font-family: var(--font-sans);
+      font-size: var(--text-sm);
+      font-weight: var(--weight-medium);
+      padding: var(--space-1.5) var(--space-3);
+      color: var(--color-text-tertiary);
+      border-radius: var(--radius-md);
+      transition: all var(--transition-fast);
+      cursor: pointer;
+    }
+
+    .nav-item:hover {
+      color: var(--color-text-primary);
+      background: var(--color-bg-tertiary);
+    }
+
+    .nav-item.active {
+      color: var(--color-text-primary);
+      background: var(--color-bg-tertiary);
+    }
+
+    /* =============================================
+       COMPONENT: AVATAR
+       ============================================= */
+
+    .avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: var(--radius-full);
+      background: var(--color-accent-muted);
+      color: var(--color-accent-text);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-sans);
+      font-weight: var(--weight-semibold);
+      font-size: var(--text-xs);
+    }
+
+    .avatar-sm { width: 28px; height: 28px; font-size: 10px; }
+    .avatar-lg { width: 48px; height: 48px; font-size: var(--text-sm); }
+
+    /* =============================================
+       COMPONENT: STAT
+       ============================================= */
+
+    .stat {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-0.5);
+    }
+
+    .stat-value {
+      font-family: var(--font-sans);
+      font-size: var(--text-2xl);
+      font-weight: var(--weight-semibold);
+      line-height: var(--leading-none);
+      letter-spacing: var(--tracking-tight);
+      color: var(--color-text-primary);
+    }
+
+    .stat-label {
+      font-size: var(--text-xs);
+      font-weight: var(--weight-medium);
+      color: var(--color-text-tertiary);
+    }
+
+    /* =============================================
+       COMPONENT: TABLE
+       ============================================= */
+
+    .table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: var(--text-sm);
+    }
+
+    .table th {
+      text-align: left;
+      padding: var(--space-3) var(--space-4);
+      font-weight: var(--weight-medium);
+      color: var(--color-text-tertiary);
+      font-size: var(--text-xs);
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .table td {
+      padding: var(--space-3) var(--space-4);
+      color: var(--color-text-secondary);
+      border-bottom: 1px solid var(--color-border-subtle);
+    }
+
+    .table tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* =============================================
+       COMPONENT: EMPTY STATE
+       ============================================= */
+
+    .empty-state {
+      text-align: center;
+      padding: var(--space-16) var(--space-8);
+    }
+
+    .empty-state-icon {
+      width: 48px;
+      height: 48px;
+      margin: 0 auto var(--space-4);
+      border-radius: var(--radius-lg);
+      background: var(--color-bg-tertiary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-text-muted);
+    }
+
+    .empty-state-title {
+      font-size: var(--text-md);
+      font-weight: var(--weight-semibold);
+      margin-bottom: var(--space-1.5);
+      color: var(--color-text-primary);
+    }
+
+    .empty-state-description {
+      color: var(--color-text-tertiary);
+      max-width: 320px;
+      margin: 0 auto;
+      font-size: var(--text-sm);
+    }
+
+    /* =============================================
+       COMPONENT: CODE BLOCKS
+       ============================================= */
+
+    pre {
+      background: var(--color-bg-tertiary);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: var(--space-4);
+      overflow-x: auto;
+      font-family: var(--font-mono);
+      font-size: var(--text-sm);
+      line-height: var(--leading-relaxed);
+      color: var(--color-text-primary);
+    }
+
+    pre code {
+      background: none;
+      padding: 0;
+      border-radius: 0;
+      color: inherit;
+    }
+
+    /* =============================================
+       COMPONENT: DIVIDER
+       ============================================= */
+
+    .divider {
+      border: none;
+      border-top: 1px solid var(--color-border);
+      margin: 0;
+    }
+
+    /* =============================================
+       BRANDBOOK LAYOUT
+       ============================================= */
+
+    .bb-container {
+      width: 100%;
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 var(--space-6);
+    }
+
+    .bb-section {
+      padding: var(--space-16) 0;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .bb-section:last-child {
+      border-bottom: none;
+    }
+
+    .bb-section-label {
+      font-size: var(--text-xs);
+      font-weight: var(--weight-medium);
+      color: var(--color-text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: var(--space-2);
+    }
+
+    .bb-section-title {
+      font-size: var(--text-2xl);
+      font-weight: var(--weight-semibold);
+      color: var(--color-text-primary);
+      margin-bottom: var(--space-3);
+    }
+
+    .bb-section-desc {
+      font-size: var(--text-base);
+      color: var(--color-text-tertiary);
+      max-width: 600px;
+      margin-bottom: var(--space-10);
+    }
+
+    .bb-subsection {
+      margin-bottom: var(--space-10);
+    }
+
+    .bb-subsection:last-child {
+      margin-bottom: 0;
+    }
+
+    .bb-subsection-title {
+      font-size: var(--text-sm);
+      font-weight: var(--weight-medium);
+      color: var(--color-text-primary);
+      margin-bottom: var(--space-4);
+    }
+
+    .bb-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-4);
+    }
+
+    .bb-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4); }
+    .bb-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-4); }
+    .bb-grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-4); }
+
+    @media (max-width: 768px) {
+      .bb-grid-2, .bb-grid-3, .bb-grid-4 {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Color swatch */
+    .bb-swatch {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+    }
+
+    .bb-swatch-color {
+      width: 100%;
+      height: 64px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--color-border);
+    }
+
+    .bb-swatch-name {
+      font-size: var(--text-xs);
+      font-weight: var(--weight-medium);
+      color: var(--color-text-primary);
+    }
+
+    .bb-swatch-value {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--color-text-muted);
+    }
+
+    /* Component showcase item */
+    .bb-component {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+    }
+
+    .bb-component-label {
+      font-size: var(--text-xs);
+      color: var(--color-text-muted);
+    }
+
+    /* Spacing demo */
+    .bb-space-demo {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      margin-bottom: var(--space-2);
+    }
+
+    .bb-space-bar {
+      background: var(--color-accent-muted);
+      height: 24px;
+      border-radius: 3px;
+    }
+
+    .bb-space-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--color-text-tertiary);
+      min-width: 72px;
+    }
+
+    /* Theme toggle */
+    .bb-theme-toggle {
+      position: fixed;
+      top: var(--space-4);
+      right: var(--space-4);
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      padding: var(--space-1.5) var(--space-3);
+      background: var(--color-bg-secondary);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-full);
+      font-family: var(--font-sans);
+      font-size: var(--text-xs);
+      font-weight: var(--weight-medium);
+      color: var(--color-text-secondary);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .bb-theme-toggle:hover {
+      border-color: var(--color-border-strong);
+      color: var(--color-text-primary);
+    }
+
+    /* Utility */
+    .mb-1 { margin-bottom: var(--space-1); }
+    .mb-2 { margin-bottom: var(--space-2); }
+    .mb-3 { margin-bottom: var(--space-3); }
+    .mb-4 { margin-bottom: var(--space-4); }
+    .mb-6 { margin-bottom: var(--space-6); }
+    .mb-8 { margin-bottom: var(--space-8); }
+    .mt-4 { margin-top: var(--space-4); }
+    .mt-6 { margin-top: var(--space-6); }
+    .gap-2 { gap: var(--space-2); }
+    .gap-4 { gap: var(--space-4); }
+    .gap-6 { gap: var(--space-6); }
+    .text-muted { color: var(--color-text-muted); }
+    .text-tertiary { color: var(--color-text-tertiary); }
+    .text-accent { color: var(--color-accent-text); }
+    .mono { font-family: var(--font-mono); }
+  </style>
+</head>
+<body>
+  <button class="bb-theme-toggle" onclick="toggleTheme()">
+    <span id="theme-icon">&#9789;</span>
+    <span id="theme-label">Dark mode</span>
+  </button>
+
+  <div class="bb-container">
+
+    <!-- ========= HEADER ========= -->
+    <header style="padding: var(--space-20) 0 var(--space-16); border-bottom: 1px solid var(--color-border);">
+      <p class="bb-section-label" style="margin-bottom: var(--space-4);">Design System v1.0</p>
+      <h1 style="margin-bottom: var(--space-4);">Work Dashboard</h1>
+      <p style="font-size: var(--text-lg); color: var(--color-text-tertiary); max-width: 560px; line-height: var(--leading-relaxed);">
+        A minimalist design system built for clarity, focus, and quiet confidence. Inspired by the restraint of Linear, the precision of Apple, and the simplicity of Vercel.
+      </p>
+    </header>
+
+    <!-- ========= DESIGN PRINCIPLES ========= -->
+    <section class="bb-section">
+      <p class="bb-section-label">Foundation</p>
+      <h2 class="bb-section-title">Design Principles</h2>
+      <p class="bb-section-desc">Every design decision follows these four principles. They're listed in priority order — when principles conflict, the higher one wins.</p>
+
+      <div class="bb-grid-2" style="gap: var(--space-6);">
+        <div class="card card-shadow">
+          <div class="card-body">
+            <h5 class="mb-2">Clarity over decoration</h5>
+            <p style="font-size: var(--text-sm); color: var(--color-text-tertiary);">The interface should be invisible. Every element earns its place by helping the user understand their data faster. Remove anything that doesn't directly serve comprehension.</p>
+          </div>
+        </div>
+        <div class="card card-shadow">
+          <div class="card-body">
+            <h5 class="mb-2">Content is the interface</h5>
+            <p style="font-size: var(--text-sm); color: var(--color-text-tertiary);">Numbers, labels, and status indicators are the primary visual elements. Chrome and ornamentation exist only to support the hierarchy of data.</p>
+          </div>
+        </div>
+        <div class="card card-shadow">
+          <div class="card-body">
+            <h5 class="mb-2">Calm confidence</h5>
+            <p style="font-size: var(--text-sm); color: var(--color-text-tertiary);">The design should feel premium through restraint, not spectacle. Muted colors, generous whitespace, and subtle transitions. It should never scream.</p>
+          </div>
+        </div>
+        <div class="card card-shadow">
+          <div class="card-body">
+            <h5 class="mb-2">Density when needed</h5>
+            <p style="font-size: var(--text-sm); color: var(--color-text-tertiary);">A dashboard shows a lot of data. We don't sacrifice information density for aesthetics — we find the balance where both work.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========= COLORS ========= -->
+    <section class="bb-section">
+      <p class="bb-section-label">Visual Identity</p>
+      <h2 class="bb-section-title">Colors</h2>
+      <p class="bb-section-desc">A restrained, neutral palette. Color is used sparingly and with intent — to indicate state, hierarchy, and interactive elements. Not for decoration.</p>
+
+      <div class="bb-subsection">
+        <h6 class="bb-subsection-title">Backgrounds</h6>
+        <div class="bb-grid-4" style="gap: var(--space-6);">
+          <div class="bb-swatch">
+            <div class="bb-swatch-color" style="background: var(--color-bg-primary);"></div>
+            <span class="bb-swatch-name">Primary</span>
+            <span class="bb-swatch-value">#FAFAFA</span>
+          </div>
+          <div class="bb-swatch">
+            <div class="bb-swatch-color" style="background: var(--color-bg-secondary);"></div>
+            <span class="bb-swatch-name">Secondary (Cards)</span>
+            <span class="bb-swatch-value">#FFFFFF</span>
+          </div>
+          <div class="bb-swatch">
+            <div class="bb-swatch-color" style="background: var(--color-bg-tertiary);"></div>
+            <span class="bb-swatch-name">Tertiary</span>
+            <span class="bb-swatch-value">#F4F4F5</span>
+          </div>
+          <div class="bb-swatch">
+            <div class="bb-swatch-color" style="background: var(--color-bg-sunken);"></div>
+            <span class="bb-swatch-name">Sunken</span>
+            <span class="bb-swatch-value">#F0F0F1</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="bb-subsection">
+        <h6 class="bb-subsection-title">Text</h6>
+        <div class="bb-grid-4" style="gap: var(--space-6);">
+          <div class="bb-swatch">
+            <div class="bb-swatch-color" style="background: var(--color-text-primary);"></div>
+            <span class="bb-swatch-name">Primary</span>
+            <span class="bb-swatch-value">#18181B</span>
+          </div>
+          <div class="bb-swatch">
+            <div class="bb-swatch-color" style="background: var(--color-text-secondary);"></div>
+            <span class="bb-swatch-name">Secondary</span>
+            <span class="bb-swatch-value">#52525B</span>
+          </div>
+          <div class="bb-swatch">
+            <div class="bb-swatch-color" style="background: var(--color-text-tertiary);"></div>
+            <span class="bb-swatch-name">Tertiary</span>
+            <span class="bb-swatch-value">#71717A</span>
+          </div>
+          <div class="bb-swatch">
+            <div class="bb-swatch-color" style="background: var(--color-text-muted);"></div>
+            <span class="bb-swatch-name">Muted</span>
+            <span class="bb-swatch-value">#A1A1AA</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="bb-subsection">
+        <h6 class="bb-subsection-title">Accent &amp; Semantic</h6>
+        <div class="bb-row" style="gap: var(--space-6);">
+          <div class="bb-swatch">
+            <div class="bb-swatch-color" style="background: var(--color-accent); width: 100px;"></div>
+            <span class="bb-swatch-name">Accent</span>
+            <span class="bb-swatch-value">#6366F1</span>
+          </div>
+          <div class="bb-swatch">
+            <div class="bb-swatch-color" style="background: var(--color-success); width: 100px;"></div>
+            <span class="bb-swatch-name">Success</span>
+            <span class="bb-swatch-value">#10B981</span>
+          </div>
+          <div class="bb-swatch">
+            <div class="bb-swatch-color" style="background: var(--color-warning); width: 100px;"></div>
+            <span class="bb-swatch-name">Warning</span>
+            <span class="bb-swatch-value">#F59E0B</span>
+          </div>
+          <div class="bb-swatch">
+            <div class="bb-swatch-color" style="background: var(--color-error); width: 100px;"></div>
+            <span class="bb-swatch-name">Error</span>
+            <span class="bb-swatch-value">#EF4444</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="bb-subsection">
+        <h6 class="bb-subsection-title">Borders</h6>
+        <div class="bb-row" style="gap: var(--space-6);">
+          <div class="bb-swatch">
+            <div class="bb-swatch-color" style="background: var(--color-border); width: 100px;"></div>
+            <span class="bb-swatch-name">Default</span>
+            <span class="bb-swatch-value">#E4E4E7</span>
+          </div>
+          <div class="bb-swatch">
+            <div class="bb-swatch-color" style="background: var(--color-border-strong); width: 100px;"></div>
+            <span class="bb-swatch-name">Strong</span>
+            <span class="bb-swatch-value">#D4D4D8</span>
+          </div>
+          <div class="bb-swatch">
+            <div class="bb-swatch-color" style="background: var(--color-border-subtle); width: 100px;"></div>
+            <span class="bb-swatch-name">Subtle</span>
+            <span class="bb-swatch-value">#F4F4F5</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="bb-subsection" style="margin-top: var(--space-8);">
+        <h6 class="bb-subsection-title">Color usage rules</h6>
+        <div class="card" style="font-size: var(--text-sm);">
+          <div class="card-body" style="display: flex; flex-direction: column; gap: var(--space-3);">
+            <div style="display: flex; gap: var(--space-3); align-items: baseline;">
+              <span style="color: var(--color-success); font-weight: 600; min-width: 24px;">Do</span>
+              <span style="color: var(--color-text-secondary);">Use the accent color only for primary actions and interactive elements (buttons, links, focus rings).</span>
+            </div>
+            <div style="display: flex; gap: var(--space-3); align-items: baseline;">
+              <span style="color: var(--color-success); font-weight: 600; min-width: 24px;">Do</span>
+              <span style="color: var(--color-text-secondary);">Use semantic colors (success/warning/error) only for their intended status meaning.</span>
+            </div>
+            <div style="display: flex; gap: var(--space-3); align-items: baseline;">
+              <span style="color: var(--color-error); font-weight: 600; min-width: 24px;">Don't</span>
+              <span style="color: var(--color-text-secondary);">Use color for decoration or to "make things interesting". Restrain wins.</span>
+            </div>
+            <div style="display: flex; gap: var(--space-3); align-items: baseline;">
+              <span style="color: var(--color-error); font-weight: 600; min-width: 24px;">Don't</span>
+              <span style="color: var(--color-text-secondary);">Use gradients, neon glows, or color overlays. Flat, solid colors only.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========= TYPOGRAPHY ========= -->
+    <section class="bb-section">
+      <p class="bb-section-label">Typography</p>
+      <h2 class="bb-section-title">Type System</h2>
+      <p class="bb-section-desc">Geist Sans for all UI. Geist Mono for code and numeric data. Typography does the heavy lifting — size, weight, and color create hierarchy, not borders or backgrounds.</p>
+
+      <div class="bb-subsection">
+        <h6 class="bb-subsection-title">Headings</h6>
+        <div style="display: flex; flex-direction: column; gap: var(--space-4);">
+          <div style="display: flex; align-items: baseline; gap: var(--space-4);">
+            <span class="mono" style="font-size: 11px; color: var(--color-text-muted); min-width: 72px;">36 / 600</span>
+            <h1>Dashboard overview</h1>
+          </div>
+          <div style="display: flex; align-items: baseline; gap: var(--space-4);">
+            <span class="mono" style="font-size: 11px; color: var(--color-text-muted); min-width: 72px;">30 / 600</span>
+            <h2>Work streams</h2>
+          </div>
+          <div style="display: flex; align-items: baseline; gap: var(--space-4);">
+            <span class="mono" style="font-size: 11px; color: var(--color-text-muted); min-width: 72px;">24 / 600</span>
+            <h3>Time distribution</h3>
+          </div>
+          <div style="display: flex; align-items: baseline; gap: var(--space-4);">
+            <span class="mono" style="font-size: 11px; color: var(--color-text-muted); min-width: 72px;">20 / 600</span>
+            <h4>Monthly income</h4>
+          </div>
+          <div style="display: flex; align-items: baseline; gap: var(--space-4);">
+            <span class="mono" style="font-size: 11px; color: var(--color-text-muted); min-width: 72px;">18 / 600</span>
+            <h5>Active projects</h5>
+          </div>
+          <div style="display: flex; align-items: baseline; gap: var(--space-4);">
+            <span class="mono" style="font-size: 11px; color: var(--color-text-muted); min-width: 72px;">16 / 600</span>
+            <h6>Section title</h6>
+          </div>
+        </div>
+      </div>
+
+      <div class="bb-subsection">
+        <h6 class="bb-subsection-title">Body &amp; UI text</h6>
+        <div style="display: flex; flex-direction: column; gap: var(--space-4); max-width: 540px;">
+          <div>
+            <span class="mono" style="font-size: 11px; color: var(--color-text-muted);">14px — Default body</span>
+            <p class="mt-4" style="font-size: var(--text-base);">This is the default text size for body content, table cells, and most UI elements. It provides a good balance between readability and information density.</p>
+          </div>
+          <div>
+            <span class="mono" style="font-size: 11px; color: var(--color-text-muted);">13px — Small</span>
+            <p class="mt-4" style="font-size: var(--text-sm); color: var(--color-text-secondary);">Smaller text for secondary information, helper text, and dense data displays. Still comfortably readable.</p>
+          </div>
+          <div>
+            <span class="mono" style="font-size: 11px; color: var(--color-text-muted);">12px — Extra small</span>
+            <p class="mt-4" style="font-size: var(--text-xs); color: var(--color-text-tertiary);">Smallest text size. Used for labels, badges, timestamps, and metadata. Minimum size for body text.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bb-subsection">
+        <h6 class="bb-subsection-title">Monospace</h6>
+        <div style="max-width: 540px;">
+          <p class="mb-4">For inline code: <code>stream.totalHours()</code> and numeric data.</p>
+          <pre><code>const streams = await api.getActiveStreams();
+const totalIncome = streams.reduce(
+  (sum, s) => sum + s.income, 0
+);</code></pre>
+        </div>
+      </div>
+
+      <div class="bb-subsection">
+        <h6 class="bb-subsection-title">Font weights</h6>
+        <div style="display: flex; flex-direction: column; gap: var(--space-3);">
+          <div style="display: flex; align-items: baseline; gap: var(--space-4);">
+            <span class="mono" style="font-size: 11px; color: var(--color-text-muted); min-width: 72px;">400</span>
+            <span style="font-weight: 400; font-size: var(--text-md);">Regular — body text, descriptions</span>
+          </div>
+          <div style="display: flex; align-items: baseline; gap: var(--space-4);">
+            <span class="mono" style="font-size: 11px; color: var(--color-text-muted); min-width: 72px;">500</span>
+            <span style="font-weight: 500; font-size: var(--text-md);">Medium — labels, navigation, buttons</span>
+          </div>
+          <div style="display: flex; align-items: baseline; gap: var(--space-4);">
+            <span class="mono" style="font-size: 11px; color: var(--color-text-muted); min-width: 72px;">600</span>
+            <span style="font-weight: 600; font-size: var(--text-md);">Semibold — headings, stat values</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========= SPACING ========= -->
+    <section class="bb-section">
+      <p class="bb-section-label">Layout</p>
+      <h2 class="bb-section-title">Spacing</h2>
+      <p class="bb-section-desc">All spacing follows an 8px base grid. Use 4px for tight relationships (icon + label), 8px for related elements, 16px+ for grouping.</p>
+
+      <div class="bb-subsection">
+        <div style="display: flex; flex-direction: column; gap: var(--space-2);">
+          <div class="bb-space-demo">
+            <span class="bb-space-label">4px</span>
+            <div class="bb-space-bar" style="width: 4px;"></div>
+            <span style="font-size: 11px; color: var(--color-text-muted);">Icon gap, tight padding</span>
+          </div>
+          <div class="bb-space-demo">
+            <span class="bb-space-label">8px</span>
+            <div class="bb-space-bar" style="width: 8px;"></div>
+            <span style="font-size: 11px; color: var(--color-text-muted);">Related elements, button padding</span>
+          </div>
+          <div class="bb-space-demo">
+            <span class="bb-space-label">12px</span>
+            <div class="bb-space-bar" style="width: 12px;"></div>
+            <span style="font-size: 11px; color: var(--color-text-muted);">Input padding, small gaps</span>
+          </div>
+          <div class="bb-space-demo">
+            <span class="bb-space-label">16px</span>
+            <div class="bb-space-bar" style="width: 16px;"></div>
+            <span style="font-size: 11px; color: var(--color-text-muted);">Card padding, group separation</span>
+          </div>
+          <div class="bb-space-demo">
+            <span class="bb-space-label">24px</span>
+            <div class="bb-space-bar" style="width: 24px;"></div>
+            <span style="font-size: 11px; color: var(--color-text-muted);">Section padding</span>
+          </div>
+          <div class="bb-space-demo">
+            <span class="bb-space-label">32px</span>
+            <div class="bb-space-bar" style="width: 32px;"></div>
+            <span style="font-size: 11px; color: var(--color-text-muted);">Large section gaps</span>
+          </div>
+          <div class="bb-space-demo">
+            <span class="bb-space-label">48px</span>
+            <div class="bb-space-bar" style="width: 48px;"></div>
+            <span style="font-size: 11px; color: var(--color-text-muted);">Page sections</span>
+          </div>
+          <div class="bb-space-demo">
+            <span class="bb-space-label">64px</span>
+            <div class="bb-space-bar" style="width: 64px;"></div>
+            <span style="font-size: 11px; color: var(--color-text-muted);">Major page divisions</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="bb-subsection">
+        <h6 class="bb-subsection-title">Border radius</h6>
+        <div class="bb-row" style="gap: var(--space-6); align-items: end;">
+          <div class="bb-component" style="align-items: center;">
+            <div style="width: 56px; height: 56px; background: var(--color-bg-tertiary); border: 1px solid var(--color-border); border-radius: var(--radius-sm);"></div>
+            <span class="bb-component-label">6px — sm</span>
+          </div>
+          <div class="bb-component" style="align-items: center;">
+            <div style="width: 56px; height: 56px; background: var(--color-bg-tertiary); border: 1px solid var(--color-border); border-radius: var(--radius-md);"></div>
+            <span class="bb-component-label">8px — md</span>
+          </div>
+          <div class="bb-component" style="align-items: center;">
+            <div style="width: 56px; height: 56px; background: var(--color-bg-tertiary); border: 1px solid var(--color-border); border-radius: var(--radius-lg);"></div>
+            <span class="bb-component-label">12px — lg</span>
+          </div>
+          <div class="bb-component" style="align-items: center;">
+            <div style="width: 56px; height: 56px; background: var(--color-bg-tertiary); border: 1px solid var(--color-border); border-radius: var(--radius-xl);"></div>
+            <span class="bb-component-label">16px — xl</span>
+          </div>
+          <div class="bb-component" style="align-items: center;">
+            <div style="width: 56px; height: 56px; background: var(--color-bg-tertiary); border: 1px solid var(--color-border); border-radius: var(--radius-full);"></div>
+            <span class="bb-component-label">full — pill</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="bb-subsection">
+        <h6 class="bb-subsection-title">Shadows</h6>
+        <div class="bb-row" style="gap: var(--space-6); align-items: end;">
+          <div class="bb-component" style="align-items: center;">
+            <div style="width: 80px; height: 80px; background: var(--color-bg-secondary); border-radius: var(--radius-lg); box-shadow: var(--shadow-xs);"></div>
+            <span class="bb-component-label">xs</span>
+          </div>
+          <div class="bb-component" style="align-items: center;">
+            <div style="width: 80px; height: 80px; background: var(--color-bg-secondary); border-radius: var(--radius-lg); box-shadow: var(--shadow-sm);"></div>
+            <span class="bb-component-label">sm</span>
+          </div>
+          <div class="bb-component" style="align-items: center;">
+            <div style="width: 80px; height: 80px; background: var(--color-bg-secondary); border-radius: var(--radius-lg); box-shadow: var(--shadow-md);"></div>
+            <span class="bb-component-label">md</span>
+          </div>
+          <div class="bb-component" style="align-items: center;">
+            <div style="width: 80px; height: 80px; background: var(--color-bg-secondary); border-radius: var(--radius-lg); box-shadow: var(--shadow-lg);"></div>
+            <span class="bb-component-label">lg</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========= BUTTONS ========= -->
+    <section class="bb-section">
+      <p class="bb-section-label">Components</p>
+      <h2 class="bb-section-title">Buttons</h2>
+      <p class="bb-section-desc">Simple, predictable, and restrained. Primary action gets color. Everything else stays neutral. No uppercase, no letter-spacing, no gradients.</p>
+
+      <div class="bb-subsection">
+        <h6 class="bb-subsection-title">Variants</h6>
+        <div class="bb-row" style="gap: var(--space-6); align-items: end;">
+          <div class="bb-component">
+            <span class="bb-component-label">Primary</span>
+            <button class="btn btn-primary">Add stream</button>
+          </div>
+          <div class="bb-component">
+            <span class="bb-component-label">Secondary</span>
+            <button class="btn btn-secondary">Export</button>
+          </div>
+          <div class="bb-component">
+            <span class="bb-component-label">Ghost</span>
+            <button class="btn btn-ghost">Cancel</button>
+          </div>
+          <div class="bb-component">
+            <span class="bb-component-label">Danger</span>
+            <button class="btn btn-danger">Delete</button>
+          </div>
+          <div class="bb-component">
+            <span class="bb-component-label">Disabled</span>
+            <button class="btn btn-primary" disabled>Saving...</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="bb-subsection">
+        <h6 class="bb-subsection-title">Sizes</h6>
+        <div class="bb-row" style="gap: var(--space-4); align-items: end;">
+          <div class="bb-component">
+            <span class="bb-component-label">Small</span>
+            <button class="btn btn-secondary btn-sm">Edit</button>
+          </div>
+          <div class="bb-component">
+            <span class="bb-component-label">Default</span>
+            <button class="btn btn-secondary">Edit stream</button>
+          </div>
+          <div class="bb-component">
+            <span class="bb-component-label">Large</span>
+            <button class="btn btn-secondary btn-lg">Create new stream</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========= FORM ELEMENTS ========= -->
+    <section class="bb-section">
+      <h2 class="bb-section-title">Form Elements</h2>
+      <p class="bb-section-desc">Inputs are visually quiet until focused. Focus state uses the accent color ring. Labels are medium weight, not uppercase.</p>
+
+      <div class="bb-grid-2" style="gap: var(--space-8);">
+        <div>
+          <label class="label">Stream name</label>
+          <input type="text" class="input" placeholder="e.g. Freelance design">
+          <p class="help-text">Name your work stream for easy identification</p>
+        </div>
+        <div>
+          <label class="label">Hours logged</label>
+          <input type="text" class="input input-error" value="-5">
+          <p class="help-text error">Hours must be a positive number</p>
+        </div>
+        <div>
+          <label class="label">Income amount</label>
+          <input type="text" class="input" value="45,000" style="font-family: var(--font-mono);">
+        </div>
+        <div>
+          <label class="label">Disabled field</label>
+          <input type="text" class="input" disabled value="Auto-calculated">
+        </div>
+      </div>
+    </section>
+
+    <!-- ========= BADGES ========= -->
+    <section class="bb-section">
+      <h2 class="bb-section-title">Badges</h2>
+      <p class="bb-section-desc">Small, pill-shaped labels for status and categorization. Use subtle backgrounds — never filled solid colors.</p>
+
+      <div class="bb-row" style="gap: var(--space-4); align-items: center;">
+        <div class="bb-component">
+          <span class="bb-component-label">Default</span>
+          <span class="badge badge-default">Freelance</span>
+        </div>
+        <div class="bb-component">
+          <span class="bb-component-label">Accent</span>
+          <span class="badge badge-accent">Active</span>
+        </div>
+        <div class="bb-component">
+          <span class="bb-component-label">Success</span>
+          <span class="badge badge-success">Paid</span>
+        </div>
+        <div class="bb-component">
+          <span class="bb-component-label">Warning</span>
+          <span class="badge badge-warning">Pending</span>
+        </div>
+        <div class="bb-component">
+          <span class="bb-component-label">Error</span>
+          <span class="badge badge-error">Overdue</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========= CARDS ========= -->
+    <section class="bb-section">
+      <h2 class="bb-section-title">Cards</h2>
+      <p class="bb-section-desc">Cards separate content groups. Minimal borders, optional subtle shadow for elevation. Never use glow effects or gradient borders.</p>
+
+      <div class="bb-grid-3" style="gap: var(--space-6);">
+        <div class="card">
+          <div class="card-body">
+            <h6 class="mb-2">Basic card</h6>
+            <p style="font-size: var(--text-sm);">Standard container with border. Used for most content groups.</p>
+          </div>
+        </div>
+
+        <div class="card card-shadow">
+          <div class="card-body">
+            <h6 class="mb-2">Elevated card</h6>
+            <p style="font-size: var(--text-sm);">Subtle shadow for emphasis. Used for primary content areas.</p>
+          </div>
+        </div>
+
+        <div class="card card-interactive">
+          <div class="card-body">
+            <h6 class="mb-2">Interactive card</h6>
+            <p style="font-size: var(--text-sm);">Hover state for clickable cards. Try hovering over this one.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-6">
+        <div class="card" style="max-width: 480px;">
+          <div class="card-header">
+            <span style="font-size: var(--text-sm); font-weight: 500;">Stream details</span>
+          </div>
+          <div class="card-body">
+            <h6 class="mb-2">Card with header and footer</h6>
+            <p style="font-size: var(--text-sm);">For structured content that needs clear sections.</p>
+          </div>
+          <div class="card-footer" style="display: flex; justify-content: flex-end; gap: var(--space-2);">
+            <button class="btn btn-ghost btn-sm">Cancel</button>
+            <button class="btn btn-primary btn-sm">Save</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========= NAVIGATION ========= -->
+    <section class="bb-section">
+      <h2 class="bb-section-title">Navigation</h2>
+      <p class="bb-section-desc">Minimal, text-driven navigation. Active state uses a subtle background fill — no color bars, no underlines, no bold color highlights.</p>
+
+      <div class="bb-subsection">
+        <h6 class="bb-subsection-title">Tab navigation</h6>
+        <nav class="nav" style="display: inline-flex; padding: 2px; background: var(--color-bg-tertiary); border-radius: var(--radius-md);">
+          <span class="nav-item active">Dashboard</span>
+          <span class="nav-item">Streams</span>
+          <span class="nav-item">Time</span>
+          <span class="nav-item">Finances</span>
+        </nav>
+      </div>
+
+      <div class="bb-subsection">
+        <h6 class="bb-subsection-title">Sidebar navigation</h6>
+        <div style="max-width: 220px; display: flex; flex-direction: column; gap: 2px;">
+          <span class="nav-item active" style="display: block;">Dashboard</span>
+          <span class="nav-item" style="display: block;">Work streams</span>
+          <span class="nav-item" style="display: block;">Time log</span>
+          <span class="nav-item" style="display: block;">Finances</span>
+          <span class="nav-item" style="display: block; margin-top: var(--space-4); color: var(--color-text-muted);">Settings</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========= STATISTICS ========= -->
+    <section class="bb-section">
+      <h2 class="bb-section-title">Statistics</h2>
+      <p class="bb-section-desc">Key metrics use large, semibold numbers with small muted labels. Numbers should use the monospace font for tabular alignment.</p>
+
+      <div class="card card-shadow">
+        <div class="card-body">
+          <div class="bb-grid-4" style="gap: var(--space-8);">
+            <div class="stat">
+              <span class="stat-value" style="font-family: var(--font-mono);">142h</span>
+              <span class="stat-label">Hours this month</span>
+            </div>
+            <div class="stat">
+              <span class="stat-value" style="font-family: var(--font-mono); color: var(--color-success);">+285k</span>
+              <span class="stat-label">Income</span>
+            </div>
+            <div class="stat">
+              <span class="stat-value" style="font-family: var(--font-mono); color: var(--color-error);">-42k</span>
+              <span class="stat-label">Expenses</span>
+            </div>
+            <div class="stat">
+              <span class="stat-value" style="font-family: var(--font-mono);">5</span>
+              <span class="stat-label">Active streams</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========= TABLE ========= -->
+    <section class="bb-section">
+      <h2 class="bb-section-title">Tables</h2>
+      <p class="bb-section-desc">Dense, scannable, minimal. No row backgrounds, no heavy borders. Just subtle dividers and clear type hierarchy.</p>
+
+      <div class="card">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Stream</th>
+              <th>Type</th>
+              <th>Hours</th>
+              <th>Income</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="color: var(--color-text-primary); font-weight: 500;">Design freelance</td>
+              <td>Freelance</td>
+              <td style="font-family: var(--font-mono);">64h</td>
+              <td style="font-family: var(--font-mono);">120,000</td>
+              <td><span class="badge badge-success">Active</span></td>
+            </tr>
+            <tr>
+              <td style="color: var(--color-text-primary); font-weight: 500;">Full-time job</td>
+              <td>Employment</td>
+              <td style="font-family: var(--font-mono);">160h</td>
+              <td style="font-family: var(--font-mono);">250,000</td>
+              <td><span class="badge badge-success">Active</span></td>
+            </tr>
+            <tr>
+              <td style="color: var(--color-text-primary); font-weight: 500;">Online course</td>
+              <td>Own business</td>
+              <td style="font-family: var(--font-mono);">24h</td>
+              <td style="font-family: var(--font-mono);">45,000</td>
+              <td><span class="badge badge-warning">Paused</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ========= AVATARS ========= -->
+    <section class="bb-section">
+      <h2 class="bb-section-title">Avatars</h2>
+      <p class="bb-section-desc">Circular, initials-based. Use the subtle accent background — never solid accent color fills.</p>
+
+      <div class="bb-row" style="gap: var(--space-6); align-items: end;">
+        <div class="bb-component" style="align-items: center;">
+          <span class="bb-component-label">Small</span>
+          <div class="avatar avatar-sm">N</div>
+        </div>
+        <div class="bb-component" style="align-items: center;">
+          <span class="bb-component-label">Default</span>
+          <div class="avatar">NK</div>
+        </div>
+        <div class="bb-component" style="align-items: center;">
+          <span class="bb-component-label">Large</span>
+          <div class="avatar avatar-lg">WD</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========= PROGRESS ========= -->
+    <section class="bb-section">
+      <h2 class="bb-section-title">Progress</h2>
+      <p class="bb-section-desc">Thin, minimal progress indicators. Accent color for in-progress, green for completed.</p>
+
+      <div style="max-width: 400px; display: flex; flex-direction: column; gap: var(--space-6);">
+        <div>
+          <div style="display: flex; justify-content: space-between; margin-bottom: var(--space-2);">
+            <span style="font-size: var(--text-xs); color: var(--color-text-tertiary);">Design freelance</span>
+            <span style="font-size: var(--text-xs); font-family: var(--font-mono); color: var(--color-text-muted);">64 / 80h</span>
+          </div>
+          <div class="progress">
+            <div class="progress-bar" style="width: 80%;"></div>
+          </div>
+        </div>
+        <div>
+          <div style="display: flex; justify-content: space-between; margin-bottom: var(--space-2);">
+            <span style="font-size: var(--text-xs); color: var(--color-text-tertiary);">Online course</span>
+            <span style="font-size: var(--text-xs); font-family: var(--font-mono); color: var(--color-text-muted);">24 / 24h</span>
+          </div>
+          <div class="progress">
+            <div class="progress-bar success" style="width: 100%;"></div>
+          </div>
+        </div>
+        <div>
+          <div style="display: flex; justify-content: space-between; margin-bottom: var(--space-2);">
+            <span style="font-size: var(--text-xs); color: var(--color-text-tertiary);">Side project</span>
+            <span style="font-size: var(--text-xs); font-family: var(--font-mono); color: var(--color-text-muted);">8 / 40h</span>
+          </div>
+          <div class="progress">
+            <div class="progress-bar" style="width: 20%;"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========= EMPTY STATE ========= -->
+    <section class="bb-section">
+      <h2 class="bb-section-title">Empty States</h2>
+      <p class="bb-section-desc">Calm, helpful, and never dramatic. A subtle icon, clear heading, brief description, and one action.</p>
+
+      <div class="card" style="max-width: 480px;">
+        <div class="empty-state">
+          <div class="empty-state-icon">
+            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6"/></svg>
+          </div>
+          <h6 class="empty-state-title">No work streams yet</h6>
+          <p class="empty-state-description">Create your first work stream to start tracking time and income across your activities.</p>
+          <button class="btn btn-primary mt-6" style="margin: var(--space-6) auto 0;">Add work stream</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========= ICONS ========= -->
+    <section class="bb-section">
+      <h2 class="bb-section-title">Icons</h2>
+      <p class="bb-section-desc">Use Lucide icons (the default for shadcn/ui). Stroke width 1.5px, size 16px for inline and 20px for standalone. Match text color — never use accent color for decorative icons.</p>
+
+      <div class="card" style="font-size: var(--text-sm);">
+        <div class="card-body" style="display: flex; flex-direction: column; gap: var(--space-3);">
+          <div style="display: flex; gap: var(--space-3); align-items: baseline;">
+            <span style="color: var(--color-success); font-weight: 600; min-width: 24px;">Do</span>
+            <span style="color: var(--color-text-secondary);">Use icons to reinforce meaning, not as decoration. Every icon should clarify, not clutter.</span>
+          </div>
+          <div style="display: flex; gap: var(--space-3); align-items: baseline;">
+            <span style="color: var(--color-success); font-weight: 600; min-width: 24px;">Do</span>
+            <span style="color: var(--color-text-secondary);">Keep icons optically consistent — use the same stroke weight and size within a context.</span>
+          </div>
+          <div style="display: flex; gap: var(--space-3); align-items: baseline;">
+            <span style="color: var(--color-error); font-weight: 600; min-width: 24px;">Don't</span>
+            <span style="color: var(--color-text-secondary);">Use filled/solid icons. Outline style only, consistent with the minimal aesthetic.</span>
+          </div>
+          <div style="display: flex; gap: var(--space-3); align-items: baseline;">
+            <span style="color: var(--color-error); font-weight: 600; min-width: 24px;">Don't</span>
+            <span style="color: var(--color-text-secondary);">Use emojis in the product UI. Emojis feel casual and undermine the premium tone.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========= MOTION ========= -->
+    <section class="bb-section">
+      <h2 class="bb-section-title">Motion</h2>
+      <p class="bb-section-desc">Animation should be nearly invisible — it smooths transitions and confirms actions, never entertains. If a user notices the animation, it's too much.</p>
+
+      <div class="card" style="font-size: var(--text-sm);">
+        <div class="card-body" style="display: flex; flex-direction: column; gap: var(--space-4);">
+          <div>
+            <span style="font-weight: 500; color: var(--color-text-primary);">100ms</span>
+            <span style="color: var(--color-text-tertiary);"> — Hover states, focus rings, color changes. Instant feedback.</span>
+          </div>
+          <div>
+            <span style="font-weight: 500; color: var(--color-text-primary);">200ms</span>
+            <span style="color: var(--color-text-tertiary);"> — Tooltips, dropdowns, panels sliding in. Perceptible but brisk.</span>
+          </div>
+          <div>
+            <span style="font-weight: 500; color: var(--color-text-primary);">300ms</span>
+            <span style="color: var(--color-text-tertiary);"> — Page transitions, modal entrances. Slow enough to orient, never sluggish.</span>
+          </div>
+          <hr class="divider" style="margin: var(--space-2) 0;">
+          <div>
+            <span style="font-weight: 500; color: var(--color-text-primary);">Easing: ease</span>
+            <span style="color: var(--color-text-tertiary);"> — Default easing for all transitions. No bouncing, no spring physics.</span>
+          </div>
+          <div>
+            <span style="font-weight: 500; color: var(--color-text-primary);">No decorative animation</span>
+            <span style="color: var(--color-text-tertiary);"> — No floating elements, pulse effects, skeleton shimmer beyond initial load, or parallax.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========= VOICE & TONE ========= -->
+    <section class="bb-section">
+      <h2 class="bb-section-title">Voice &amp; Tone</h2>
+      <p class="bb-section-desc">How the product speaks. This applies to labels, tooltips, empty states, error messages, and any user-facing text.</p>
+
+      <div class="bb-grid-2" style="gap: var(--space-6);">
+        <div class="card">
+          <div class="card-body" style="font-size: var(--text-sm);">
+            <h6 class="mb-3" style="color: var(--color-success);">We are</h6>
+            <ul style="list-style: none; display: flex; flex-direction: column; gap: var(--space-2); color: var(--color-text-secondary);">
+              <li><strong>Calm</strong> — no exclamation marks, no urgency theater</li>
+              <li><strong>Direct</strong> — say what happened, what to do next</li>
+              <li><strong>Respectful</strong> — the user is competent, not a beginner</li>
+              <li><strong>Precise</strong> — specific numbers over vague descriptions</li>
+            </ul>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-body" style="font-size: var(--text-sm);">
+            <h6 class="mb-3" style="color: var(--color-error);">We are not</h6>
+            <ul style="list-style: none; display: flex; flex-direction: column; gap: var(--space-2); color: var(--color-text-secondary);">
+              <li><strong>Playful</strong> — no jokes, no emojis, no whimsy</li>
+              <li><strong>Corporate</strong> — no jargon, no stiffness</li>
+              <li><strong>Alarmist</strong> — errors are facts, not emergencies</li>
+              <li><strong>Verbose</strong> — every word must earn its place</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========= DO / DON'T ========= -->
+    <section class="bb-section">
+      <h2 class="bb-section-title">General Rules</h2>
+      <p class="bb-section-desc">A quick reference for making design decisions that stay on-brand.</p>
+
+      <div class="bb-grid-2" style="gap: var(--space-6);">
+        <div class="card">
+          <div class="card-body" style="font-size: var(--text-sm);">
+            <h6 class="mb-3" style="color: var(--color-success);">Do</h6>
+            <ul style="list-style: none; display: flex; flex-direction: column; gap: var(--space-2); color: var(--color-text-secondary);">
+              <li>Use whitespace generously — it's a feature, not waste</li>
+              <li>Let typography create hierarchy (size + weight + color)</li>
+              <li>Keep interactions predictable and fast</li>
+              <li>Use borders for separation, shadows for elevation</li>
+              <li>Test both light and dark themes</li>
+              <li>Keep data dense but scannable</li>
+            </ul>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-body" style="font-size: var(--text-sm);">
+            <h6 class="mb-3" style="color: var(--color-error);">Don't</h6>
+            <ul style="list-style: none; display: flex; flex-direction: column; gap: var(--space-2); color: var(--color-text-secondary);">
+              <li>Use gradients, glows, or decorative effects</li>
+              <li>Add color "to make things interesting"</li>
+              <li>Use more than one accent color in a single view</li>
+              <li>Add animation that users will notice consciously</li>
+              <li>Use ALL CAPS except in tiny labels (12px)</li>
+              <li>Sacrifice information density for aesthetics</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========= DARK THEME PREVIEW ========= -->
+    <section class="bb-section">
+      <h2 class="bb-section-title">Theme Preview</h2>
+      <p class="bb-section-desc">Use the toggle in the top right corner to switch between light and dark themes. Both themes use the same structural tokens — only color values change.</p>
+
+      <div class="card card-shadow">
+        <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
+          <span style="font-size: var(--text-sm); font-weight: 500;">Work streams — April 2026</span>
+          <button class="btn btn-primary btn-sm">Add stream</button>
+        </div>
+        <div class="card-body">
+          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-6); margin-bottom: var(--space-6);">
+            <div class="stat">
+              <span class="stat-value" style="font-family: var(--font-mono);">142h</span>
+              <span class="stat-label">Total time</span>
+            </div>
+            <div class="stat">
+              <span class="stat-value" style="font-family: var(--font-mono); color: var(--color-success);">+285k</span>
+              <span class="stat-label">Total income</span>
+            </div>
+            <div class="stat">
+              <span class="stat-value" style="font-family: var(--font-mono);">5</span>
+              <span class="stat-label">Active streams</span>
+            </div>
+          </div>
+          <hr class="divider" style="margin-bottom: var(--space-4);">
+          <div style="display: flex; flex-direction: column; gap: var(--space-3);">
+            <div style="display: flex; justify-content: space-between; align-items: center; padding: var(--space-2) 0;">
+              <div style="display: flex; align-items: center; gap: var(--space-3);">
+                <div class="avatar avatar-sm">DF</div>
+                <div>
+                  <div style="font-size: var(--text-sm); font-weight: 500;">Design freelance</div>
+                  <div style="font-size: var(--text-xs); color: var(--color-text-muted);">Freelance</div>
+                </div>
+              </div>
+              <div style="display: flex; align-items: center; gap: var(--space-6);">
+                <span style="font-family: var(--font-mono); font-size: var(--text-sm); color: var(--color-text-secondary);">64h</span>
+                <span style="font-family: var(--font-mono); font-size: var(--text-sm); color: var(--color-success-text);">+120k</span>
+                <span class="badge badge-success">Active</span>
+              </div>
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: center; padding: var(--space-2) 0;">
+              <div style="display: flex; align-items: center; gap: var(--space-3);">
+                <div class="avatar avatar-sm">FT</div>
+                <div>
+                  <div style="font-size: var(--text-sm); font-weight: 500;">Full-time job</div>
+                  <div style="font-size: var(--text-xs); color: var(--color-text-muted);">Employment</div>
+                </div>
+              </div>
+              <div style="display: flex; align-items: center; gap: var(--space-6);">
+                <span style="font-family: var(--font-mono); font-size: var(--text-sm); color: var(--color-text-secondary);">160h</span>
+                <span style="font-family: var(--font-mono); font-size: var(--text-sm); color: var(--color-success-text);">+250k</span>
+                <span class="badge badge-success">Active</span>
+              </div>
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: center; padding: var(--space-2) 0;">
+              <div style="display: flex; align-items: center; gap: var(--space-3);">
+                <div class="avatar avatar-sm">OC</div>
+                <div>
+                  <div style="font-size: var(--text-sm); font-weight: 500;">Online course</div>
+                  <div style="font-size: var(--text-xs); color: var(--color-text-muted);">Own business</div>
+                </div>
+              </div>
+              <div style="display: flex; align-items: center; gap: var(--space-6);">
+                <span style="font-family: var(--font-mono); font-size: var(--text-sm); color: var(--color-text-secondary);">24h</span>
+                <span style="font-family: var(--font-mono); font-size: var(--text-sm); color: var(--color-success-text);">+45k</span>
+                <span class="badge badge-warning">Paused</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========= FOOTER ========= -->
+    <footer style="padding: var(--space-12) 0; text-align: center;">
+      <p style="font-size: var(--text-xs); color: var(--color-text-muted);">
+        Work Dashboard Design System v1.0 — Premium Minimalist
+      </p>
+    </footer>
+  </div>
+
+  <script>
+    function toggleTheme() {
+      const html = document.documentElement;
+      const isDark = html.getAttribute('data-theme') === 'dark';
+      html.setAttribute('data-theme', isDark ? 'light' : 'dark');
+      document.getElementById('theme-icon').textContent = isDark ? '\u263D' : '\u2600';
+      document.getElementById('theme-label').textContent = isDark ? 'Dark mode' : 'Light mode';
+    }
+  </script>
+</body>
+</html>
