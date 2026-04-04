@@ -11,10 +11,11 @@ Two separate services communicating via REST API:
 
 | Layer | Technology | Purpose |
 |-------|-----------|---------|
-| Frontend | Next.js 15 + TypeScript | UI, responsive layout, API client |
+| Frontend | Next.js + TypeScript | UI, responsive layout, API client |
 | UI components | Tailwind CSS + shadcn/ui | Rapid development baseline; brandbook and design system to follow |
 | Backend | Python + FastAPI | REST API, business logic, data validation |
 | ORM | SQLModel | Type-safe database access, Pydantic integration |
+| Linter | Ruff | Python linting, import sorting, modern idiom enforcement |
 | Database | PostgreSQL (Docker, local) | Primary data store, runs locally in a container |
 | Deployment | — | Deferred; local development only for now |
 

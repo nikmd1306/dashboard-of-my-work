@@ -5,14 +5,23 @@ A unified control panel for people with diversified work activities (freelance, 
 ## Repository structure
 
 ```
-AGENTS.md          — this file: project map and agent rules
-CLAUDE.md          -> AGENTS.md (symlink for Cursor/Claude)
-README.md          — project description for humans
-docs/
-├── brandbook.html — design system and visual guidelines (open in browser)
-├── PRODUCT.md     — product strategy, MVP scope, principles
-├── STACK.md       — tech stack and architecture decisions
-└── VISION.md      — product vision, problem space, market context
+AGENTS.md              — this file: project map and agent rules
+CLAUDE.md              -> AGENTS.md (symlink)
+README.md              — project description for humans (Russian)
+docker-compose.yml     — PostgreSQL via Docker
+docs/                  — product vision, strategy, stack, brandbook
+backend/               — Python + FastAPI backend
+└── app/
+    ├── models/        — SQLModel table definitions
+    ├── schemas/       — Pydantic request/response schemas
+    └── routers/       — API route handlers
+frontend/              — Next.js + TypeScript frontend
+└── src/
+    ├── app/           — pages (App Router)
+    ├── components/    — React components (includes shadcn/ui)
+    ├── lib/           — utilities and API client
+    ├── types/         — shared TypeScript type definitions
+    └── i18n/          — UI string dictionaries (Russian in v1)
 ```
 
 ## Language policy
@@ -36,3 +45,7 @@ docs/
    - Voice: calm, direct, precise. No exclamation marks or urgency theater.
 5. Do not add features not described in the product strategy without explicit user approval.
 6. Keep this file short. As the project grows, add detailed docs to `docs/` and link them here.
+7. **Repository structure in this file must stay high-level.** Only list stable architectural directories (e.g. `models/`, `routers/`), never individual files. Agents can explore the file system for details. If a new top-level directory or architectural pattern is added, update the structure; if files are added within existing directories, do not.
+8. **The user manages runtime themselves.** Do not start, stop, or restart services (database, backend, frontend) unless the user explicitly grants permission for the current session. If a restart is needed, ask the user to do it via `make` commands (see `Makefile` for available targets). Do not launch Docker Desktop or background processes on your own.
+9. **Keep documentation in sync with reality.** When adding, removing, or upgrading dependencies or tools, verify that `docs/STACK.md` and other relevant docs still reflect the actual state. Do not leave stale references.
+10. **Run `make lint` before considering backend work done.** The project uses `ruff` for Python linting (config in `backend/pyproject.toml`). A pre-commit hook (`.githooks/pre-commit`) enforces this automatically.
