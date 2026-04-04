@@ -10,6 +10,7 @@ CLAUDE.md              -> AGENTS.md (symlink)
 README.md              — project description for humans (Russian)
 docker-compose.yml     — PostgreSQL via Docker
 docs/                  — product vision, strategy, stack, brandbook
+├── plans/             — execution plans (active/ and completed/)
 backend/               — Python + FastAPI backend
 └── app/
     ├── models/        — SQLModel table definitions
@@ -49,3 +50,5 @@ frontend/              — Next.js + TypeScript frontend
 8. **The user manages runtime themselves.** Do not start, stop, or restart services (database, backend, frontend) unless the user explicitly grants permission for the current session. If a restart is needed, ask the user to do it via `make` commands (see `Makefile` for available targets). Do not launch Docker Desktop or background processes on your own.
 9. **Keep documentation in sync with reality.** When adding, removing, or upgrading dependencies or tools, verify that `docs/STACK.md` and other relevant docs still reflect the actual state. Do not leave stale references.
 10. **Run `make lint` before considering backend work done.** The project uses `ruff` for Python linting (config in `backend/pyproject.toml`). A pre-commit hook (`.githooks/pre-commit`) enforces this automatically.
+11. **Assess task complexity before starting.** Simple, isolated changes (rename a label, change a color, fix a typo) can be executed immediately. For non-trivial work — new features, significant refactors, multi-file changes — create an execution plan first. If the user explicitly asks for a plan, always create one regardless of complexity.
+12. **Use execution plans for non-trivial work.** Plans live in `docs/plans/` (`active/` for in-progress, `completed/` for finished). File naming: `YYYY-MM-DD-short-slug.md`. Use the template at `docs/plans/TEMPLATE.md`. Each plan is split into phases — a phase is a self-contained unit of work that can be completed in a single agent session. When the user says "execute phase N", read the plan and execute that phase. Read any active plans before starting related work.
