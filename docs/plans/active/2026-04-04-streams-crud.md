@@ -100,58 +100,126 @@ and install the shadcn/ui components that the stream pages will need.
 **Testable result:** the app visually matches the brandbook look and feel.
 Sidebar has icons and correct colors. New components are available for import.
 
-### Phase 3 — Frontend: streams list and create/edit form
+### Phase 3 — Frontend: streams list page (display only)
 
-Build the streams list page and the create/edit flow.
+Build the streams list page that fetches and displays data. No forms in this
+phase.
 
-**Streams list page (`/streams`):**
+**Files to create/edit:**
 
-- Fetch streams from API using `fetchStreams()` from `lib/api.ts`.
-- Display streams as interactive cards (brandbook card-interactive pattern):
-  each card shows stream name, type badge, status badge, description (truncated).
-- "Add stream" primary button in the page header.
-- Empty state when no streams exist (brandbook empty-state pattern with icon,
-  title, description, and CTA button).
-- Clicking a stream card navigates to `/streams/[id]`.
+- Edit `frontend/src/app/streams/page.tsx` — rewrite as a `"use client"`
+  component.
 
-**Create/edit stream form:**
+**What the page does:**
 
-- Modal dialog (using shadcn Dialog) for creating a new stream.
-- Fields: name (text input, required), type (select dropdown), status (select
-  dropdown, defaults to "active"), description (textarea, optional).
-- Form validation: name is required, reasonable max length.
-- On submit: call `createStream()` or `updateStream()`, close dialog, refresh
-  list.
-- The same form component is reused for both create and edit (pre-filled when
-  editing).
+1. State: `streams` array (initially empty), `loading` boolean.
+2. On mount (`useEffect`): call `fetchStreams()` from `lib/api.ts`, store
+   result in state.
+3. While loading: show `ru.common.loading` text.
+4. If streams array is empty after loading: show empty state — centered block
+   with a Lucide `Layers` icon (48px, muted color, inside a rounded `bg-muted`
+   container), `ru.streams.empty.title` as heading,
+   `ru.streams.empty.description` as paragraph, and a disabled "Add stream"
+   button (it will become functional in Phase 4).
+5. If streams exist: show a header row with `ru.streams.title` as `h1`,
+   `ru.streams.subtitle` as subtitle, and a disabled "Add stream" button on
+   the right. Below it, a grid of cards (`grid grid-cols-1 md:grid-cols-2
+   lg:grid-cols-3 gap-4`).
+6. Each card: wrap in a Next.js `Link` to `/streams/[id]`. Inside: stream
+   name as card title, type badge (use `Badge` with `variant="secondary"`),
+   status badge (use `Badge` with `variant="secondary"` and override colors:
+   active → `bg-primary/10 text-primary`, paused →
+   `bg-amber-500/10 text-amber-600 dark:text-amber-400`, completed →
+   keep `variant="secondary"` as-is). Show truncated description if present
+   (2-line clamp via `line-clamp-2`).
+7. Use `ru.streams.type.*` and `ru.streams.status.*` for badge labels.
 
-**Testable result:** user can open `/streams`, see the list (or empty state),
-create a stream via the modal, see it appear in the list, and click to navigate
-to the detail page.
+**Testable result:** open `/streams` — see empty state or a grid of stream
+cards (if streams exist in the database). Clicking a card navigates to
+`/streams/[id]`.
 
-### Phase 4 — Frontend: stream detail page and delete
+### Phase 4 — Frontend: create/edit stream dialog
+
+Add the ability to create and edit streams via a modal dialog.
+
+**Files to create/edit:**
+
+- Create `frontend/src/components/streams/stream-form-dialog.tsx` — the form
+  dialog component.
+- Edit `frontend/src/app/streams/page.tsx` — wire up the dialog and enable
+  the "Add stream" button.
+
+**StreamFormDialog component:**
+
+- Props: `open: boolean`, `onOpenChange: (open: boolean) => void`,
+  `stream?: Stream` (if provided, the form is in edit mode and fields are
+  pre-filled), `onSuccess: () => void` (called after successful create/update
+  to refresh the list).
+- Uses `Dialog`, `DialogContent`, `DialogHeader`, `DialogTitle`,
+  `DialogFooter` from `components/ui/dialog`.
+- Form state via `useState`: `name` (string), `type` (StreamType, default
+  `"freelance"`), `status` (StreamStatus, default `"active"`), `description`
+  (string). Reset fields when `open` changes or `stream` prop changes.
+- Fields layout (vertical stack with `gap-4`):
+  1. Name: `Label` + `Input`, placeholder from `ru.streams.form.namePlaceholder`.
+  2. Type: `Label` + `Select` with `SelectTrigger`, `SelectContent`, and
+     `SelectItem` for each type. Pass `value={type}` and
+     `onValueChange={setType}` to `Select` root. Use `ru.streams.type.*` for
+     item labels.
+  3. Status: same pattern as type, using `ru.streams.status.*`.
+  4. Description: `Label` + `Textarea`, placeholder from
+     `ru.streams.form.descriptionPlaceholder`.
+- Validation: name must be non-empty and <= 100 chars. Show
+  `ru.streams.form.nameRequired` or `ru.streams.form.nameTooLong` below the
+  input if invalid (only after first submit attempt).
+- Footer: cancel button (`variant="outline"`) and submit button
+  (`variant="default"`). Submit button shows `ru.common.saving` while request
+  is in flight.
+- On submit: if editing (`stream` prop exists), call
+  `updateStream(stream.id, data)`. Otherwise call `createStream(data)`. On
+  success: call `onSuccess()`, close dialog. On error: log to console (error
+  handling UI is deferred).
+
+**Wiring into the streams page:**
+
+- Add state: `dialogOpen`, `editingStream` (Stream | null).
+- "Add stream" button: `onClick={() => { setEditingStream(null); setDialogOpen(true); }}`.
+- Render `StreamFormDialog` with the state props and `onSuccess` that re-fetches
+  the streams list.
+
+**Testable result:** click "Add stream", fill in the form, submit — stream
+appears in the list. Open the dialog again for a new stream — fields are reset.
+
+### Phase 5 — Frontend: stream detail page and delete
 
 Build the stream detail page and the delete flow.
 
+**Files to create/edit:**
+
+- Edit `frontend/src/app/streams/[id]/page.tsx` — rewrite as a `"use client"`
+  component.
+- Reuse `StreamFormDialog` from Phase 4 for the edit flow.
+
 **Stream detail page (`/streams/[id]`):**
 
-- Fetch the stream by id using `fetchStream(id)` from `lib/api.ts`.
-- Display a card with all stream info: name (as heading), type badge, status
-  badge, description, creation date.
-- "Edit" button opens the same form dialog as create, pre-filled with current
-  values.
-- "Delete" button with a confirmation dialog.
-- Back link/button to return to the streams list.
-- Handle 404 gracefully (stream not found message).
-
-**Delete flow:**
-
-- Confirmation dialog: "Are you sure you want to delete this stream?"
-- On confirm: call `deleteStream(id)`, redirect to `/streams`.
+- State: `stream` (Stream | null), `loading`, `notFound` booleans.
+- On mount: call `fetchStream(id)`. If 404 error, set `notFound = true`.
+- Loading state: show `ru.common.loading`.
+- Not found state: show `ru.streams.notFound.title` and
+  `ru.streams.notFound.description` with a link back to `/streams`.
+- Normal state: a Card showing stream name as `h1`, type badge, status badge,
+  description (full text), formatted `created_at` date. Below: "Edit" button
+  and "Delete" button.
+- "Edit" button opens `StreamFormDialog` pre-filled with the current stream.
+  `onSuccess` re-fetches the stream.
+- "Delete" button opens a confirmation dialog (use `Dialog` with
+  `ru.streams.deleteConfirm.*` strings). On confirm: call
+  `deleteStream(id)`, then `router.push("/streams")`.
+- Back link at the top: `ru.streams.backToList`, links to `/streams`.
 
 **Testable result:** full end-to-end CRUD flow works through the UI — create a
-stream, view it, edit its name/type/status, delete it. The app looks polished
-and follows the brandbook.
+stream from the list page, click to view details, edit its name/type/status
+from the detail page, delete it and get redirected back to the list.
 
 ## Decision log
 
@@ -173,13 +241,16 @@ and follows the brandbook.
 ## Validation
 
 1. Start services (`make dev`).
-2. Open `http://localhost:8000/docs` — all five stream endpoints respond correctly.
-3. Open `http://localhost:3000/streams` — empty state is displayed.
-4. Click "Add stream", fill in the form, submit — stream appears in the list.
-5. Click the stream card — detail page shows all info.
-6. Click "Edit", change the name, submit — name updates.
-7. Click "Delete", confirm — stream is removed, redirected to list.
-8. Visual check: colors, fonts, spacing, badges, cards match the brandbook.
+2. Open `http://localhost:8000/docs` — all five stream endpoints respond correctly
+   (Phase 1).
+3. Visual check: sidebar has icons, theme matches brandbook (Phase 2).
+4. Open `http://localhost:3000/streams` — empty state or stream cards displayed
+   (Phase 3).
+5. Click "Add stream", fill in the form, submit — stream appears in the list
+   (Phase 4).
+6. Click a stream card — detail page shows all info (Phase 5).
+7. Click "Edit" on detail page, change the name, submit — name updates (Phase 5).
+8. Click "Delete", confirm — stream is removed, redirected to list (Phase 5).
 9. `make lint` passes with no errors.
 
 ## Outcomes
