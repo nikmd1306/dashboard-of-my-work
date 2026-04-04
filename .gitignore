@@ -29,6 +29,7 @@ htmlcov/
 .pytest_cache/
 
 # IDE
+.vscode/
 .idea/
 *.swp
 *.swo

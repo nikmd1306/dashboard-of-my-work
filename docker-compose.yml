@@ -1,0 +1,16 @@
+services:
+  db:
+    image: postgres:17
+    container_name: work-dashboard-db
+    restart: unless-stopped
+    ports:
+      - "5433:5432"
+    environment:
+      POSTGRES_USER: dashboard
+      POSTGRES_PASSWORD: dashboard_local
+      POSTGRES_DB: work_dashboard
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:

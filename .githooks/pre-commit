@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+errors=0
+
+# ── Reject nested .git directories ────────────────────
+nested_git=$(find . -mindepth 2 -name .git -type d \
+    -not -path './.git/*' \
+    -not -path '*/node_modules/*' \
+    -not -path '*/.venv/*' 2>/dev/null || true)
+
+if [ -n "$nested_git" ]; then
+    echo "pre-commit: nested .git directories found:"
+    echo "$nested_git"
+    echo "Remove them before committing (rm -rf <path>)."
+    errors=1
+fi
+
+# ── Run ruff on backend ───────────────────────────────
+if [ -x backend/.venv/bin/ruff ]; then
+    if ! (cd backend && .venv/bin/ruff check --quiet .); then
+        echo "pre-commit: ruff found issues in backend/."
+        echo "Run: cd backend && .venv/bin/ruff check . --fix"
+        errors=1
+    fi
+fi
+
+exit $errors
