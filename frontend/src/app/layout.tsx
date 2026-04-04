@@ -29,14 +29,14 @@ export default function RootLayout({
       lang="ru"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="flex min-h-full">
-        <aside className="w-56 shrink-0 border-r p-4">
-          <div className="mb-6 px-3 text-sm font-semibold tracking-tight">
+      <body className="flex min-h-full bg-background text-foreground">
+        <aside className="w-56 shrink-0 border-r border-border bg-background p-4">
+          <div className="mb-6 px-3 text-sm font-semibold tracking-tight text-foreground">
             {ru.app.title}
           </div>
           <SidebarNav />
         </aside>
-        <main className="flex-1 p-6">{children}</main>
+        <main className="flex-1 bg-background p-6">{children}</main>
       </body>
     </html>
   );
