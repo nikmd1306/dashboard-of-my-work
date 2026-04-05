@@ -16,6 +16,8 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { StreamFormDialog } from "@/components/streams/stream-form-dialog";
+import { PageHeader } from "@/components/layout/page-header";
+import { EmptyState } from "@/components/layout/empty-state";
 
 const typeLabel: Record<StreamType, string> = {
   freelance: ru.streams.type.freelance,
@@ -60,7 +62,7 @@ export default function StreamsPage() {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center py-20 text-muted-foreground">
+      <div className="flex flex-1 items-center justify-center text-muted-foreground">
         {ru.common.loading}
       </div>
     );
@@ -68,18 +70,19 @@ export default function StreamsPage() {
 
   if (streams.length === 0) {
     return (
-      <div className="flex flex-col items-center justify-center py-20 text-center">
-        <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-muted">
-          <Layers className="h-6 w-6 text-muted-foreground" />
-        </div>
-        <h2 className="text-base font-semibold">{ru.streams.empty.title}</h2>
-        <p className="mt-1.5 max-w-xs text-sm text-muted-foreground">
-          {ru.streams.empty.description}
-        </p>
-        <Button className="mt-6" onClick={openCreateDialog}>
-          <Plus className="h-4 w-4" />
-          {ru.streams.addStream}
-        </Button>
+      <div className="flex flex-1 flex-col">
+        <PageHeader title={ru.streams.title} subtitle={ru.streams.subtitle} />
+        <EmptyState
+          icon={Layers}
+          title={ru.streams.empty.title}
+          description={ru.streams.empty.description}
+          action={
+            <Button onClick={openCreateDialog}>
+              <Plus className="h-4 w-4" />
+              {ru.streams.addStream}
+            </Button>
+          }
+        />
         <StreamFormDialog
           open={dialogOpen}
           onOpenChange={setDialogOpen}
@@ -91,48 +94,54 @@ export default function StreamsPage() {
   }
 
   return (
-    <div>
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-2xl font-semibold tracking-tight">
-            {ru.streams.title}
-          </h1>
-          <p className="mt-1 text-sm text-muted-foreground">
-            {ru.streams.subtitle}
-          </p>
-        </div>
-        <Button onClick={openCreateDialog}>
-          <Plus className="h-4 w-4" />
-          {ru.streams.addStream}
-        </Button>
-      </div>
+    <div className="flex flex-1 flex-col">
+      <PageHeader
+        title={ru.streams.title}
+        subtitle={ru.streams.subtitle}
+        action={
+          <Button onClick={openCreateDialog}>
+            <Plus className="h-4 w-4" />
+            {ru.streams.addStream}
+          </Button>
+        }
+      />
 
-      <div className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-        {streams.map((stream) => (
-          <Link key={stream.id} href={`/streams/${stream.id}`}>
-            <Card className="h-full cursor-pointer transition-all hover:border-zinc-300 hover:shadow-md dark:hover:border-zinc-600">
-              <CardHeader>
-                <CardTitle>{stream.name}</CardTitle>
-              </CardHeader>
-              <CardContent className="flex flex-col gap-3">
-                <div className="flex items-center gap-2">
-                  <Badge variant="secondary">{typeLabel[stream.type]}</Badge>
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {streams.map((stream) => {
+          const initials = stream.name.slice(0, 2).toUpperCase();
+          return (
+            <Link key={stream.id} href={`/streams/${stream.id}`}>
+              <Card className="h-full cursor-pointer shadow-sm transition-all hover:border-zinc-300 hover:shadow-md dark:hover:border-zinc-600">
+                <CardHeader className="flex flex-row items-center gap-3">
+                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-muted text-xs font-semibold text-muted-foreground">
+                    {initials}
+                  </div>
+                  <div className="flex flex-col">
+                    <CardTitle className="text-base font-medium">
+                      {stream.name}
+                    </CardTitle>
+                    <span className="text-xs text-muted-foreground">
+                      {typeLabel[stream.type]}
+                    </span>
+                  </div>
+                </CardHeader>
+                <CardContent className="flex flex-col gap-3">
                   <Badge
                     variant="secondary"
                     className={statusClassName[stream.status]}
                   >
                     {statusLabel[stream.status]}
                   </Badge>
-                </div>
-                {stream.description && (
-                  <p className="line-clamp-2 text-sm text-muted-foreground">
-                    {stream.description}
-                  </p>
-                )}
-              </CardContent>
-            </Card>
-          </Link>
-        ))}
+                  {stream.description && (
+                    <p className="line-clamp-2 text-sm text-muted-foreground">
+                      {stream.description}
+                    </p>
+                  )}
+                </CardContent>
+              </Card>
+            </Link>
+          );
+        })}
       </div>
 
       <StreamFormDialog

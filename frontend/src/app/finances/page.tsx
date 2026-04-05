@@ -1,10 +1,21 @@
+import { Wallet } from "lucide-react";
+
 import ru from "@/i18n/ru";
+import { PageHeader } from "@/components/layout/page-header";
+import { EmptyState } from "@/components/layout/empty-state";
 
 export default function FinancesPage() {
   return (
-    <div>
-      <h1 className="text-2xl font-semibold">{ru.finances.title}</h1>
-      <p className="mt-1 text-muted-foreground">{ru.finances.subtitle}</p>
+    <div className="flex flex-1 flex-col">
+      <PageHeader
+        title={ru.finances.title}
+        subtitle={ru.finances.subtitle}
+      />
+      <EmptyState
+        icon={Wallet}
+        title={ru.finances.empty.title}
+        description={ru.finances.empty.description}
+      />
     </div>
   );
 }

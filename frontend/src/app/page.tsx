@@ -1,10 +1,18 @@
+import { LayoutDashboard } from "lucide-react";
+
 import ru from "@/i18n/ru";
+import { PageHeader } from "@/components/layout/page-header";
+import { EmptyState } from "@/components/layout/empty-state";
 
 export default function DashboardPage() {
   return (
-    <div>
-      <h1 className="text-2xl font-semibold">{ru.dashboard.title}</h1>
-      <p className="mt-1 text-muted-foreground">{ru.dashboard.subtitle}</p>
+    <div className="flex flex-1 flex-col">
+      <PageHeader title={ru.dashboard.title} subtitle={ru.dashboard.subtitle} />
+      <EmptyState
+        icon={LayoutDashboard}
+        title={ru.dashboard.empty.title}
+        description={ru.dashboard.empty.description}
+      />
     </div>
   );
 }

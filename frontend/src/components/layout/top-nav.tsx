@@ -23,11 +23,11 @@ const navItems: ReadonlyArray<{
   { href: "/finances", label: ru.nav.finances, icon: Wallet },
 ];
 
-export function SidebarNav() {
+export function TopNav() {
   const pathname = usePathname();
 
   return (
-    <nav className="flex flex-col gap-0.5">
+    <nav className="flex items-center gap-1">
       {navItems.map((item) => {
         const isActive =
           item.href === "/"
@@ -39,7 +39,7 @@ export function SidebarNav() {
             key={item.href}
             href={item.href}
             className={cn(
-              "flex items-center gap-3 rounded-md px-3 py-1.5 text-sm transition-colors",
+              "flex items-center gap-2 rounded-md px-3 py-1.5 text-sm transition-colors",
               isActive
                 ? "bg-accent font-medium text-accent-foreground"
                 : "text-muted-foreground hover:bg-accent/50 hover:text-foreground",

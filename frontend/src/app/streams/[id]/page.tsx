@@ -4,6 +4,7 @@ import { useCallback, useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft, Calendar, Pencil, Trash2 } from "lucide-react";
+import { Separator } from "@/components/ui/separator";
 
 import { deleteStream, fetchStream } from "@/lib/api";
 import type { Stream, StreamStatus, StreamType } from "@/types";
@@ -25,6 +26,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { StreamFormDialog } from "@/components/streams/stream-form-dialog";
+import { PageHeader } from "@/components/layout/page-header";
 
 const typeLabel: Record<StreamType, string> = {
   freelance: ru.streams.type.freelance,
@@ -101,7 +103,7 @@ export default function StreamDetailPage() {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center py-20 text-muted-foreground">
+      <div className="flex flex-1 items-center justify-center text-muted-foreground">
         {ru.common.loading}
       </div>
     );
@@ -109,7 +111,7 @@ export default function StreamDetailPage() {
 
   if (notFound || !stream) {
     return (
-      <div className="flex flex-col items-center justify-center py-20 text-center">
+      <div className="flex flex-1 flex-col items-center justify-center text-center">
         <h2 className="text-base font-semibold">
           {ru.streams.notFound.title}
         </h2>
@@ -131,15 +133,17 @@ export default function StreamDetailPage() {
     <div>
       <Link
         href="/streams"
-        className="mb-6 inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground"
+        className="mb-4 inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground"
       >
         <ArrowLeft className="h-4 w-4" />
         {ru.streams.backToList}
       </Link>
 
-      <Card>
+      <PageHeader title={stream.name} />
+
+      <Card className="max-w-2xl shadow-sm">
         <CardHeader>
-          <CardTitle className="text-2xl">{stream.name}</CardTitle>
+          <CardTitle className="text-lg">{ru.streams.detail.title}</CardTitle>
         </CardHeader>
         <CardContent className="flex flex-col gap-4">
           <div className="flex items-center gap-2">
@@ -153,7 +157,7 @@ export default function StreamDetailPage() {
           </div>
 
           {stream.description && (
-            <p className="text-sm text-muted-foreground whitespace-pre-line">
+            <p className="whitespace-pre-line text-sm text-muted-foreground">
               {stream.description}
             </p>
           )}
@@ -163,7 +167,9 @@ export default function StreamDetailPage() {
             {ru.streams.created} {formatDate(stream.created_at)}
           </div>
 
-          <div className="flex items-center gap-2 pt-2">
+          <Separator />
+
+          <div className="flex items-center gap-2">
             <Button
               variant="outline"
               onClick={() => setEditDialogOpen(true)}
