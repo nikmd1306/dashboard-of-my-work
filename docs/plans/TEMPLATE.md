@@ -36,6 +36,9 @@ context beyond what is written here.
   by name. "Fetch data and show cards" is too vague. "Call `fetchStreams()`
   in `useEffect`, store in `streams` state, render as `Card` components in
   a 3-column grid" is concrete enough.
+- **End every phase with verification.** Each phase must include a
+  "Verification" step that instructs the executor to run the `verifier`
+  subagent. This is not optional — no phase is complete without it.
 
 ### Phase 1 — Name
 
@@ -46,6 +49,10 @@ can start writing code after reading the dependent files, without making
 design decisions.
 
 **Testable result:** what the user can observe to confirm this phase works.
+
+**Verification:** run the `verifier` subagent with the list of changed files,
+a description of what this phase did, and a reference to this plan and phase
+number. Fix any blocking issues before reporting the phase as complete.
 
 ### Phase 2 — Name
 
