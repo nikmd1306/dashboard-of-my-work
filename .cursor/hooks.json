@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "hooks": {
+    "afterFileEdit": [
+      {
+        "command": ".cursor/hooks/format-backend.sh",
+        "matcher": "Write",
+        "timeout": 10
+      }
+    ]
+  }
+}
