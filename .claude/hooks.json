@@ -3,7 +3,7 @@
   "hooks": {
     "afterFileEdit": [
       {
-        "command": ".cursor/hooks/format-backend.sh",
+        "command": ".claude/hooks/format-backend.sh",
         "matcher": "Write",
         "timeout": 10
       }
